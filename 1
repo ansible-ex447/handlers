@@ -1,17 +1,14 @@
 ---
 - hosts: all
-  become: true
+  become: yes
   tasks:
-        - copy: 
-            content: "hello world"
-            dest: /tmp/abc.txt
-            notify: restart_apache
-
+    - copy:
+        content: "Hello World"
+        dest: /tmp/abc.txt
+      notify: Restart appache
   handlers:
-        - name: restart apache
-          service:
-            name: httpd
-            state: restarted
-            enabled: yes
-
-...
+    - name: Restart appache
+      service:
+        name: httpd
+        state: restarted
+        enable: yes 
