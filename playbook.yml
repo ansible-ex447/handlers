@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - copy:
+        content: "Goodluck ex447"
+        dest: /tmp/abc.txt
+      notify: Restart appache
+  handlers:
+    - name: Restart appache
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes
