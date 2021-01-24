@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Copy content
+      copy:
+        content: "Mohit passwd in EX447"
+        dest: /tmp/mgl.txt
+      notify: httpd restart
+  handlers:
+    - name: httpd restart
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes 
