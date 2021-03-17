@@ -1,0 +1,15 @@
+---
+- name: create handlers
+  hosts: all
+  become: yes
+  tasks:
+    - copy:
+        content: "goodluck ex447"
+        dest: /tmp/test_handler.txt
+      notify: restart appache
+  handlers:
+    - name: restart appache
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes 
