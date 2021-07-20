@@ -3,13 +3,16 @@
   hosts: all
   become: yes
   tasks:
-    - copy:
-        content: "goodluck ex447"
-        dest: /tmp/test-handler.txt
-      notify: Restart appache
-  handlers:
-    - name: Restart appache
-      service:
+    - name: Copy Content
+      copy:
+        content: "Mangal singh is  Boy"
+        dest: /tmp/abc.txt
+      notify: restart_apache
+
+  handlers:    
+    - name: restart_apache
+      service: 
         name: httpd
         state: restarted
-        enabled: yes 
+        enabled: yes
+
