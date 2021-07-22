@@ -1,18 +1,5 @@
 ---
 - name: Create handlers
   hosts: all
-  become: yes
+  become: no
   tasks:
-    - name: Copy Content
-      copy:
-        content: "Mangal singh is  Boy"
-        dest: /tmp/abc.txt
-      notify: restart_apache
-
-  handlers:    
-    - name: restart_apache
-      service: 
-        name: httpd
-        state: restarted
-        enabled: yes
-
