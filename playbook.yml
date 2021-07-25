@@ -1,5 +1,17 @@
 ---
 - name: Create handlers
   hosts: all
-  become: no
+  become: yes
   tasks:
+    - name: Create file 
+      copy:
+        content: "Baba, Manda & Shubhan are mathsun"
+        dest: /tmp/baba.txt
+      notify: restart_apache
+
+  handlers:
+    - name: restart_apache
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes
