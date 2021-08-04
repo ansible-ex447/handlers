@@ -3,10 +3,10 @@
   hosts: all
   become: yes
   tasks:
-    - name: Create file 
+    - name: modify the content
       copy:
-        content: "Baba, Manda & Shubhan are mathsun"
-        dest: /tmp/baba.txt
+        content: "Baba is Mathsun"
+        dest: /tmp/data.txt
       notify: restart_apache
 
   handlers:
