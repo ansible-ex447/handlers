@@ -1,5 +1,18 @@
 ---
 - name: Create handlers
   hosts: all
-  become: no
+  become: yes
   tasks:
+    - name: update the file
+      copy:
+        content: "This is test file"
+        dest: /var/www/html/insex.html
+      notify: update_content
+
+  handlers:
+    - name: update_content
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes
+        
