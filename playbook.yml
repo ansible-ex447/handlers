@@ -1,5 +1,17 @@
 ---
 - name: Create handlers
   hosts: all
-  become: no
+  become: yes
   tasks:
+    - name: Content update
+      copy:
+        content: "Baba Smart Hai"
+        dest: /tmp/baba.txt
+      notify: update_file
+
+  handlers:
+    - name: update_file
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes
