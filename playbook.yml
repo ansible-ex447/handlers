@@ -1,17 +1,5 @@
 ---
 - name: Create handlers
   hosts: all
-  become: yes
+  become: no
   tasks:
-    - name: copy the content
-      copy:
-        content: 'Baba mathsun hai'
-        dest: /tmp/baba.txt 
-      notify: handlers_task
-
-  handlers:
-    - name: handlers_task
-      service: 
-        name: httpd
-        state: restarted
-        enabled: yes
